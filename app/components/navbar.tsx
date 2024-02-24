@@ -3,10 +3,12 @@ import { ThemeToggle } from "./thetoggler";
 import { Button } from "@/components/ui/button";
 import {RegisterLink, LoginLink, LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import { UserNav } from "./usernav";
 
 export async function Navbar(){
 
-const {isAuthenticated} = getKindeServerSession(); 
+const {isAuthenticated, getUser} = getKindeServerSession(); 
+const user = await getUser()
 
     return(
         <nav className="border-b bg-background h-[10vh] flex items-center">
@@ -20,7 +22,7 @@ const {isAuthenticated} = getKindeServerSession();
                     {await isAuthenticated() ? (
                         <div className="flex items-center gap-x-5">                        
                     
-                        <LogoutLink><Button>Sair</Button></LogoutLink>
+                        <UserNav image={user?.picture as string}/>
                     
                         </div>
                     ) : (
