@@ -9,9 +9,9 @@ datasource db {
 }
 
 model User{
-  id string @id @unique
-  name string?
-  email string @unique
-  stripeCustomerId string? @unique
-  
+  id                  String @id   @unique
+  name                String?
+  email               String       @unique
+  stripeCustomerId    String?      @unique 
+  colorScheme         String       @default("theme-orange")
 }
