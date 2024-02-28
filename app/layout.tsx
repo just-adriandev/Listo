@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 import { ThemeToggle } from "./components/thetoggler";
 import { Navbar } from "./components/navbar";
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +19,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <body className={inter.className}>
