@@ -12,7 +12,7 @@ interface Data {
     colorScheme?: string;
   }
 
-async function getData(userId: string): Promise<Data> {
+async function getData(userId: string): Promise <Data> {
     const data = await prisma.user.findUnique({
         where: {
             id: userId,
@@ -53,12 +53,12 @@ export default async function SetPage(){
 
                     <div className="space-y-2">
                         <Label>Nome</Label>
-                        <Input name='name' id='name' placeholder="Nome" type="text" defaultValue={data?.name ?? ''}/>
+                        <Input name='name' id='name' placeholder="Nome" type="text" defaultValue={data?.name ?? undefined}/>
                     </div>
 
                     <div className="space-y-2">
                         <Label>Email</Label>
-                        <Input name='email' id='email' placeholder="Email" type="email" disabled defaultValue={data?.email ?? ''}/>
+                        <Input name='email' id='email' placeholder="Email" type="email" disabled defaultValue={data?.email ?? undefined}/>
                     </div>
 
                     <div className="space-y-2">
