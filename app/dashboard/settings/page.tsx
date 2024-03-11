@@ -8,7 +8,7 @@ import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 
 interface Data {
     name?: string;
-    email?: string;
+    email: string;
     colorScheme?: string;
   }
 
@@ -23,6 +23,7 @@ async function getData(userId: string): Promise <Data> {
             colorScheme:true
         },
     });
+
 return data;
 }
 
