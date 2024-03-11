@@ -1,3 +1,4 @@
+import { SubmitBtn } from "@/app/components/submitbtn";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -5,14 +6,9 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import prisma from "@/lib/db";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import { revalidatePath } from "next/cache";
 
-interface Data {
-    name?: string;
-    email: string;
-    colorScheme?: string;
-  }
-
-async function getData(userId: string): Promise <Data> {
+async function getData(userId: string) {
     const data = await prisma.user.findUnique({
         where: {
             id: userId,
@@ -32,19 +28,35 @@ export default async function SetPage(){
     const user = await getUser();
     const data = await getData(user?.id as string);
 
+    async function postData(formData : FormData){
+    'use server'
 
+    const name = formData.get('name') as string;
+    const colorScheme = formData.get("tema") as string; 
+
+        await prisma.user.update({
+            where: {
+                id: user?.id,
+            },
+            data: {
+                name: name ?? undefined,
+                colorScheme: colorScheme ?? undefined,
+            },
+        });
+
+    revalidatePath('/', 'layout')
+    }
 
     return(
         <div className="grid items-start gap-8">
             <div className="flex items-center justify-between px-2">
                 <div className="grid gap-1">
                     <h1 className="text-3xl md:text-4xl ">Configurações</h1>
-                    <p className="text-lg text-muted-foreground">Configurações do seu perfil</p>
                 </div>
             </div>
         
         <Card>
-            <form> 
+            <form action={postData} > 
                 <CardHeader>
                     <CardTitle>Configurações gerais</CardTitle>
                 </CardHeader>
@@ -72,8 +84,11 @@ export default async function SetPage(){
                             <SelectContent>
                                 <SelectGroup>
                                     <SelectItem value="theme-green">Verde</SelectItem>           
-                                    <SelectItem value="theme-blue">Azul</SelectItem>           
-                                    <SelectItem value="theme-orange">Laranja</SelectItem>           
+                                    <SelectItem value="theme-blue">Azul</SelectItem> 
+                                    <SelectItem value="theme-cammo">Verde Cammo</SelectItem>          
+                                    <SelectItem value="theme-orange">Laranja</SelectItem>                                    <SelectItem value="theme-blue">Azul</SelectItem> 
+                                    <SelectItem value="theme-rose">Rosa</SelectItem> 
+           
                                 </SelectGroup>
                             </SelectContent>
                         
@@ -84,7 +99,7 @@ export default async function SetPage(){
                </CardContent>
 
                <CardFooter>
-                <Button>Salvar alterações</Button>
+                <SubmitBtn/>
                </CardFooter>
             </form>
         </Card>

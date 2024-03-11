@@ -22,7 +22,7 @@ export default async function Home() {
           <div>
 
             <span className='w-auto px-6 py-3 rounded-full bg-secondary'>
-              <span className='text-sm font-medium text-primary'>Organize a sua vida sem dificuldades</span>
+              <span className='text-sm font-medium text-primary'>Olá, é muito bom ter você aqui!</span>
             </span>
 
                 <h1 className='mt-8 text-3xl font-extrabold tracking-tight lg:text-6xl'>

@@ -7,7 +7,7 @@ import { DropdownMenu,
     DropdownMenuItem, 
     DropdownMenuTrigger, } from "@/components/ui/dropdown-menu";
 
-    import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import Link from "next/link";
 import { CreditCard, Home, Settings } from "lucide-react";
@@ -37,7 +37,7 @@ export function UserNav({image}: {image: string}){
             <DropdownMenuGroup>
                 {navItems.map((item, index)=> (
                     <DropdownMenuItem asChild key={index}>
-                        <Link href={"item.href"} className="w-full flex justify-between items-center">
+                        <Link href={item.href} className="w-full flex justify-between items-center">
                             {item.name}
                             <span>
                                 <item.icon className="w-4 text-primary mr-3 h-4" />

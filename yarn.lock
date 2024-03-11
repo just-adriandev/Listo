@@ -1074,10 +1074,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@kinde-oss/kinde-auth-nextjs@^2.1.13":
-  version "2.1.13"
-  resolved "https://registry.npmjs.org/@kinde-oss/kinde-auth-nextjs/-/kinde-auth-nextjs-2.1.13.tgz"
-  integrity sha512-djZbqysbkH4QKY0TUNgxdhSADyfTYw3a4DieXgrycNvaukQGSlrcKq2ZX4xATj/O/kpzfWYOd83rzKjiMW18LQ==
+"@kinde-oss/kinde-auth-nextjs@^2.1.15":
+  version "2.1.15"
+  resolved "https://registry.npmjs.org/@kinde-oss/kinde-auth-nextjs/-/kinde-auth-nextjs-2.1.15.tgz"
+  integrity sha512-ej1gsT9W2er9yqrz/rf3IWalJ9Wkhc+SDXDGv57SanCRfcFxDwwsKmfO7LgQKyZtRYQ0InzbTEzsvPOD1YzP2g==
   dependencies:
     "@babel/preset-env" "^7.23.9"
     "@kinde-oss/kinde-typescript-sdk" "^2.6.2"
