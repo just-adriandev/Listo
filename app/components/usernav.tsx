@@ -48,7 +48,7 @@ export function UserNav({image}: {image: string}){
             </DropdownMenuGroup>
             <DropdownMenuSeparator/>
 
-            <LogoutLink><Button className="w-full">Sair</Button></LogoutLink>
+            <LogoutLink><Button variant={"secondary"} className="w-full">Sair</Button></LogoutLink>
 
         </DropdownMenuContent>
 
