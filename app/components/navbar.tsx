@@ -28,8 +28,8 @@ const user = await getUser()
                     ) : (
                         <div className="flex items-center gap-x-5">                        
                     
-                        <LoginLink><Button variant={"secondary"}>Entrar</Button></LoginLink>
-                        <RegisterLink><Button>Registre-se</Button></RegisterLink>
+                        <LoginLink><Button>Entrar</Button></LoginLink>
+                        <RegisterLink><Button variant={"secondary"}>Registre-se</Button></RegisterLink>
                     
                         </div>
                     )}
