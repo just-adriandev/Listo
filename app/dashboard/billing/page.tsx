@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
 import { PrismaClient } from "@prisma/client";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
-import { getStripeSession } from "@/lib/stripe";
+import { getStripeSession, stripe } from "@/lib/stripe";
 import { redirect } from "next/navigation";
+import { StripePortal } from "@/app/components/SubmitBtn";
 
 const prisma = new PrismaClient();
 
@@ -57,7 +58,7 @@ async function createSubscription() {
     }
 
     const subscriptionUrl = await getStripeSession({
-        customerId: dbUser.stripeCustomerId,
+        customerId: dbUser.stripeCustomerId as string,
         domainUrl:'http://localhost:3000',
         priceId: process.env.STRIPE_PRICE_ID as string, 
     });
@@ -65,6 +66,43 @@ async function createSubscription() {
     return redirect(subscriptionUrl);
 }
 
+async function createCustomerPortal() {
+    "use server";
+    const session = await stripe.billingPortal.sessions.create({
+      customer: data?.user.stripeCustomerId as string,
+      return_url:"http://localhost:3000/dashboard",
+    });
+
+    return redirect(session.url);
+  }
+
+if (data?.status === "active") {
+    return (
+      <div className="grid items-start gap-8">
+
+        <div className="flex items-center justify-between px-2">
+          <div className="grid gap-1">
+            <h1 className="text-3xl md:text-4xl ">Assinatura</h1>
+          </div>
+        </div>
+
+        <Card className="w-full lg:w-2/3">
+          <CardHeader>
+            <CardTitle>Editar Assinatura</CardTitle>
+            <CardDescription>
+              Clicando no botão abaixo você pode gerenciar a sua assinatura.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form action={createCustomerPortal}>
+              <StripePortal />
+            </form>
+          </CardContent>
+        </Card>
+
+      </div>
+    );
+  }
 
     return (
         <div className="max-w-md mx-auto space-y-3">
@@ -97,7 +135,7 @@ async function createSubscription() {
                     </ul>
 
                             <form className="w-full" action={createSubscription}>
-                                <Button className="w-full"> Assine </Button>
+                                <Button className="w-full"> Assinar </Button>
                             </form>
 
                 </div>

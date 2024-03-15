@@ -85,10 +85,9 @@ export default async function SetPage(){
                                 <SelectGroup>
                                     <SelectItem value="theme-green">Verde</SelectItem>           
                                     <SelectItem value="theme-blue">Azul</SelectItem> 
-                                    <SelectItem value="theme-cammo">Verde Cammo</SelectItem>          
-                                    <SelectItem value="theme-orange">Laranja</SelectItem>                                    <SelectItem value="theme-blue">Azul</SelectItem> 
+                                    <SelectItem value="theme-cammo">Verde Musgo</SelectItem>          
+                                    <SelectItem value="theme-orange">Laranja</SelectItem>                                   
                                     <SelectItem value="theme-rose">Rosa</SelectItem> 
-           
                                 </SelectGroup>
                             </SelectContent>
                         

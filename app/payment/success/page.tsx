@@ -14,11 +14,11 @@ export default function successRoute(){
 
                     <div className="mt-3 text-center sm:mt-5 w-full">
 
-                        <h3 className="text-lg leading-6 font-medium">Pagamento efetuado com sucesso :) </h3>
+                        <h3 className="text-lg leading-6 font-medium">Assinatura realizada com sucesso</h3>
 
                         <div className="mt-2">
                             <p className="text-sm text-muted-foreground">
-                                Muito obrigado pela sua colaboração.
+                                Agradecemos pela sua contribuição, agora você é PREMIUM e pode desfrutar de todos os benenficios.
                             </p>
                         </div>
 
