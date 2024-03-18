@@ -17,7 +17,7 @@ export function SubmitBtn () {
             </Button> // Loading state button here
         ): (
             <Button type="submit">
-             Salvar alterações
+             Salvar
             </Button>
         )}
         
