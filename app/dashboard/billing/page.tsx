@@ -6,6 +6,7 @@ import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import { getStripeSession, stripe } from "@/lib/stripe";
 import { redirect } from "next/navigation";
 import { StripePortal } from "@/app/components/SubmitBtn";
+import { unstable_noStore as noStore } from "next/cache";
 
 const prisma = new PrismaClient();
 
@@ -14,6 +15,7 @@ const Vantagens = [
 ]
 
 async function getData(userId: string) {
+  noStore()
     const data = await prisma.subscription.findUnique({
       where: {
         userId: userId,

@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation';
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import prisma from '@/lib/db';
 import { stripe } from '@/lib/stripe';
+import {unstable_noStore as noStore } from "next/cache";
 
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
   async function getData({
@@ -19,6 +20,9 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     lastName: string | undefined | null;
     profileImage: string | undefined | null;
   }) {
+
+    noStore()
+    
     const user = await prisma.user.findUnique({
       where: {
         id: id,

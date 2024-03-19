@@ -6,7 +6,10 @@ import { ThemeToggle } from "./components/thetoggler";
 import { Navbar } from "./components/navbar";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import prisma from "@/lib/db";
+import {unstable_noStore as noStore } from "next/cache";
+
 const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   title: "Listo",
@@ -14,6 +17,8 @@ export const metadata: Metadata = {
 };
 
 async function getData(userId: string){
+  noStore()
+
   if (userId) {
     const data = await prisma.user.findUnique({
       where: {

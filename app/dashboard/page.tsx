@@ -6,8 +6,11 @@ import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import prisma from "@/lib/db";
 import { Edit, File, Trash } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { revalidatePath, unstable_noStore as noStore } from "next/cache";
+import { DeleteBtn } from "../components/SubmitBtn";
 
 async function getData(userId: string) {
+    noStore()
     const data = await prisma.note.findMany({
       where: {
         userId: userId,
@@ -25,6 +28,18 @@ export default async function DashboardPage(){
     const user = await getUser();
     const data = await getData(user?.id as string);
     
+    async function DeleteNote(formData: FormData) {
+        'use server'
+        const noteId = formData.get('noteId') as string
+        await prisma.note.delete({
+            where: {
+                id: noteId
+            }
+        })
+
+        revalidatePath('/dashboard')
+    }
+
     return(
         <div className="grid items-start gap-y-8">
             <div className="flex items-center justify-between px-2">
@@ -72,7 +87,7 @@ export default async function DashboardPage(){
             <Card key={item.id} className="flex items-center justify-between p-4"> 
                 <div>
 
-                    <h2 className="font-semibold mb-1 text-3xl text-primary">
+                    <h2 className="font-semibold mb-5 text-3xl text-primary">
                         {item.title}
                     </h2>
 
@@ -80,7 +95,7 @@ export default async function DashboardPage(){
                         {item.description}
                     </p>
 
-                    <p className="text-muted-foreground text-sm">
+                    <p className="text-muted-foreground text-xs">
                         <span>Criada em: </span>
                         {new Intl.DateTimeFormat('pt-BR', {
                             dateStyle: 'short',
@@ -96,10 +111,9 @@ export default async function DashboardPage(){
                     </Button>
                     </Link>
 
-                    <form>
-                        <Button variant='destructive' size='icon'>
-                            <Trash className="w-4 h-4 "/>
-                        </Button>
+                    <form action={DeleteNote}>
+                        <input type="hidden" name="noteId" value={item.id} />
+                        <DeleteBtn />
                     </form>
                 </div>
             </Card>
