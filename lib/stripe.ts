@@ -12,8 +12,8 @@ export const getStripeSession = async ({priceId, domainUrl, customerId} : {price
         line_items: [{price: priceId, quantity: 1}],
         mode: 'subscription',
         billing_address_collection:'auto',
-        success_url: `${domainUrl}/payment/success`,
-        cancel_url: `${domainUrl}/payment/cancelled`,
+        success_url: `https://listonow.vercel.app/payment/success`,
+        cancel_url: `$https://listonow.vercel.app/payment/cancelled`,
         customer: customerId,
         customer_update: {
         address:'auto',
