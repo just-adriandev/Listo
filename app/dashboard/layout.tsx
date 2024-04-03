@@ -34,21 +34,40 @@ export default async function DashboardLayout({ children }: { children: ReactNod
 
     });
 
-    if (!user) {
-      const name = `${firstName?? ''} ${lastName?? ''}`;
-      await prisma.user.create({
-        data: {
-          id: id,
-          email: email,
-          name: name,
-        },
-      });
-    }
+    const existingUser = await prisma.user.findUnique({
+      where: {
+        email: email,
+      },
+    });
 
-    if (!user?.stripeCustomerId) {
+    if (!user) {
+      if (existingUser) {
+        await prisma.user.update({
+          where: {
+            id: existingUser.id,
+          },
+          data: {
+            id: id,
+            email: email,
+            name: `${firstName?? ''} ${lastName?? ''}`,
+          },
+        });
+      } else {
+        await prisma.user.create({
+          data: {
+            id: id,
+            email: email,
+            name: `${firstName?? ''} ${lastName?? ''}`,
+          },
+        });
+      }
+    }
+  
+    if (!user?.stripeCustomerId &&!existingUser?.stripeCustomerId) {
       const data = await stripe.customers.create({
         email: email,
       });
+  
 
       await prisma.user.update({
         where: {
