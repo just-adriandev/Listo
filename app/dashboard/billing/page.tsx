@@ -73,13 +73,15 @@ async function createSubscription() {
 
 async function createCustomerPortal() {
     "use server";
-    const session = await stripe.billingPortal.sessions.create({
-      customer: data?.user.stripeCustomerId as string,
-      return_url:
-      process.env.NODE_env ==  'production' 
-      ? (process.env.PRODUCTION_URL as string) :
-      "http://localhost:3000/dashboard",
-    });
+    const productionUrl = process.env.PRODUCTION_URL;
+  const returnUrl = productionUrl
+   ? new URL("/dashboard", productionUrl).toString()
+    : "http://localhost:3000/dashboard";
+
+  const session = await stripe.billingPortal.sessions.create({
+    customer: data?.user.stripeCustomerId as string,
+    return_url: returnUrl,
+  });
 
     return redirect(session.url);
   }
