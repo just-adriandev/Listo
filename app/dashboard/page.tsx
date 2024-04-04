@@ -15,10 +15,16 @@ async function getData(userId: string) {
       where: {
         userId: userId,
       },
-      orderBy: {
-        createdAt: 'desc'
-      },
-    });
+      select: {
+          title: true,
+          id: true,
+          description: true,
+          createdAt: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      });
 
 return data;
 }    

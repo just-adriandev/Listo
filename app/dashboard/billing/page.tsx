@@ -76,7 +76,7 @@ async function createCustomerPortal() {
     const session = await stripe.billingPortal.sessions.create({
       customer: data?.user.stripeCustomerId as string,
       return_url:
-      process.env.NODE_env ===  'production' 
+      process.env.NODE_env ==  'production' 
       ? (process.env.PRODUCTION_URL as string)
       : "http://localhost:3000/dashboard",
     });
