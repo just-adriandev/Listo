@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import "../globals.css";
 import Link from "next/link";
@@ -16,15 +15,15 @@ async function getData(userId: string) {
         userId: userId,
       },
       select: {
-          title: true,
-          id: true,
-          description: true,
-          createdAt: true,
-        },
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
+        title: true,
+        id: true,
+        description: true,
+        createdAt: true,
+      },
+            orderBy: {
+                createdAt: "asc",
+            },
+        });
 
 return data;
 }    
@@ -37,6 +36,7 @@ export default async function DashboardPage(){
     async function DeleteNote(formData: FormData) {
         'use server'
         const noteId = formData.get('noteId') as string
+
         await prisma.note.delete({
             where: {
                 id: noteId

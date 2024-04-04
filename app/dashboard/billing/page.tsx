@@ -64,7 +64,7 @@ async function createSubscription() {
         domainUrl: 
         process.env.NODE_env ==  'production' 
         ? (process.env.PRODUCTION_URL as string)
-        : 'http://localhost:3000',
+        : 'https://listonow.vercel.app',
         priceId: process.env.STRIPE_PRICE_ID as string, 
     });
 
@@ -78,7 +78,7 @@ async function createCustomerPortal() {
       return_url:
       process.env.NODE_env ==  'production' 
       ? (process.env.PRODUCTION_URL as string)
-      : "http://localhost:3000/dashboard",
+      : "https://listonow.vercel.app/dashboard",
     });
 
     return redirect(session.url);
