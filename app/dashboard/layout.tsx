@@ -35,15 +35,25 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     });
 
     if (!user) {
-      const name = `${firstName?? ''} ${lastName?? ''}`;
-      await prisma.user.create({
-        data: {
-          id: id,
+      const existingUser = await prisma.user.findUnique({
+        where: {
           email: email,
-          name: name,
         },
       });
-    }
+
+      if (!existingUser) {
+        const name = `${firstName?? ''} ${lastName?? ''}`;
+        await prisma.user.create({
+          data: {
+            id: id,
+            email: email,
+            name: name,
+          },
+        });
+      } else {
+        return redirect ('/api/auth/login');
+      }
+    } 
 
     if (!user?.stripeCustomerId) {
       const data = await stripe.customers.create({

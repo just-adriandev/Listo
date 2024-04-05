@@ -88,12 +88,12 @@ export default async function DashboardPage(){
 
 ) : (
 
-    <div className="flex flex-col gap-y-4">
+    <div className="flex mb-7 flex-col gap-y-4">
         {data.map((item) => (
             <Card key={item.id} className="flex items-center justify-between p-4"> 
                 <div>
 
-                    <h2 className="font-semibold mb-5 text-3xl text-primary">
+                    <h2 className="font-semibold text-3xl text-primary">
                         {item.title}
                     </h2>
 
@@ -124,13 +124,12 @@ export default async function DashboardPage(){
                 </div>
             </Card>
         ))}
-        
     </div>   
                    
-    )}
+    )} 
         </div>
 
     );
     
-    <div className="mb-5"></div>
+    
 }
