@@ -75,7 +75,7 @@ const description = formData.get('description') as string;
 
                     <div className="gap-y-2 flex flex-col">
                         <Label>Descrição</Label>
-                        <Textarea name="description" defaultValue={data?.description} placeholder="Descreva sua nota adicionando detalhes, passos e o que mais você quiser"/>
+                        <Textarea name="description" defaultValue={data?.description ?? ''} placeholder="Descreva sua nota adicionando detalhes, passos e o que mais você quiser"/>
                     </div>
                 </CardContent>
 
