@@ -161,7 +161,7 @@
       --radius: 0.5rem;
     }
   
-    .dark .theme-cammo{
+    .dark .theme-cammo {
       --background: 115 43% 2%;
       --foreground: 115 21% 99%;
       --muted: 115 16% 14%;
@@ -229,7 +229,6 @@
     }
 
     .theme-yellow {
-      :root {
         --background: 0 0% 100%;
         --foreground: 20 14.3% 4.1%;
         --muted: 60 4.8% 95.9%;
@@ -273,9 +272,7 @@
         --destructive-foreground: 60 9.1% 97.8%;
         --ring: 35.5 91.7% 32.9%;
       }
-    }
   
-
 @layer base {
   * {
     @apply border-border;

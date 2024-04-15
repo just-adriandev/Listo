@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
-import { ThemeToggle } from "./components/thetoggler";
 import { Navbar } from "./components/navbar";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import prisma from "@/lib/db";
