@@ -94,11 +94,16 @@ export default async function DashboardPage(){
                 <div>
 
                     <h2 className="font-semibold text-3xl text-primary">
-                        {item.title}
+                        <Link href={`/dashboard/new/${item.id}`}>
+                            {item.title}
+                        </Link>
+                        
                     </h2>
 
                     <p className="text-md mb-3">
-                        {item.description}
+                        <Link href={`/dashboard/new/${item.id}`}>
+                            {item.description} 
+                        </Link>
                     </p>
 
                     <p className="text-muted-foreground text-xs">
