@@ -17,7 +17,7 @@ const user = await getUser()
                 <Link href={'/'}> <h1 className="font-bold text-3xl">Listo</h1> </Link>
 
                 <div className="flex items-center gap-x-5">
-                    <ThemeToggle/>
+                    <div className="hidden sm:flex"><ThemeToggle/></div>
                     
                     {await isAuthenticated() ? (
                         <div className="flex items-center gap-x-5">                        

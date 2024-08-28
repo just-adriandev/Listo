@@ -7,10 +7,10 @@ import { DropdownMenu,
     DropdownMenuItem, 
     DropdownMenuTrigger, } from "@/components/ui/dropdown-menu";
 
-import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import Link from "next/link";
 import { CreditCard, Home, Settings } from "lucide-react";
+import { ThemeToggle2 } from "./thetoggler";
 
 
 const navItems = [
@@ -46,6 +46,8 @@ export function UserNav({image}: {image: string}){
                     </DropdownMenuItem>
                 ))}
             </DropdownMenuGroup>
+            <DropdownMenuSeparator/>
+            <ThemeToggle2/>
             <DropdownMenuSeparator/>
 
             <LogoutLink><Button variant={"secondary"} className="w-full">Sair</Button></LogoutLink>
